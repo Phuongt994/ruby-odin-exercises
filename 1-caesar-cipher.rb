@@ -1,5 +1,4 @@
 # Caesar cipher - Odin project ruby exercises
-# TODO: fix to loop over the alphabet
 
 def caesar_cipher(string, shift_num)
     # list out alphabet for index
@@ -12,10 +11,20 @@ def caesar_cipher(string, shift_num)
   
     string.split('').each do |char| 
       cipher_char = char
+
+      p cipher_char
   
       if lowcase_alphabet.include?(char.downcase)
+        index = lowcase_alphabet.index(char.downcase)
+
         # if char index reaches end of alphabet, reset index to beginning
-        cipher_char = lowcase_alphabet.at(lowcase_alphabet.index(char.downcase)+ (shift_num)
+        new_index = index + (shift_num % 26)
+
+        if new_index >= 26
+          new_index = new_index - 26
+        end
+
+        cipher_char = lowcase_alphabet.at(new_index)
       end
   
       # upcase if original char was capitalised
@@ -28,6 +37,6 @@ def caesar_cipher(string, shift_num)
   
   end
   
-  caesar_cipher("HeLLo zZz! ?", 26)
+  caesar_cipher("b", 63)
   
   
