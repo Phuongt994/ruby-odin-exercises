@@ -1,4 +1,4 @@
-# # Sub strings - Odin project ruby exercises
+# Sub strings - Odin project ruby exercises
 
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 
@@ -6,7 +6,7 @@ def substrings(str, dict)
     result = []
     # find all matched substrings
     str.split().each do |str|
-        matches = dict.select{ |word| str.include?(word)}
+        matches = dict.select{ |word| str.downcase.include?(word)}
         result.push(matches)
     end
 
@@ -15,7 +15,8 @@ def substrings(str, dict)
         result[key] += 1
         result
     end
+
+    result
 end
 
-substrings("Howdy partner, sit down! How's it going?", dictionary)
-# => { "below" => 1, "low" => 1 }
+p substrings("Howdy partner, sit down! How's it going?", dictionary)
