@@ -1,4 +1,4 @@
-require "./board"
+    # TODO: improve empty cell displays, add board display, better win catch
     # INITIALISE
     # request an empty board with 3x3 (BOARD: CLASS / BOARD::ARRAY-CONSTRUCTOR)
     # win condition defined (BOARD::WINCONDITION-METHOD)
@@ -12,46 +12,33 @@ require "./board"
     # ..continue til END
     # END 
     # announce winner (BOARD:: ENDGAME-METHOD)
+
+require "./board"
+
 class Main 
     def initialize
-        @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-        @player_x = ""
-        @player_o = ""
-    end
-
-    def check_win_condition
-        if (@board[0] === @board[1] && @board[1] === @board[2]) || 
-            (@board[3] === @board[4] && @board[4] === @board[5]) ||
-            (@board[6] === @board[7] && @board[7] === @board[8]) ||
-            (@board[0] === @board[3] && @board[3] === @board[6]) ||
-            (@board[1] === @board[4] && @board[4] === @board[7]) ||
-            (@board[2] === @board[5] && @board[5] === @board[8]) ||
-            (@board[0] === @board[4] && @board[4] === @board[8]) ||
-            (@board[1] === @board[4] && @board[4] === @board[7]) ||
-            (@board[2] === @board[4] && @board[4] === @board[6]) 
-            return true
-        else
-            return false
-        end   
+        puts "Welcome!"
     end
 
     def start_game
+        board = Board.new()
+
         win_condition = false
         until win_condition == true 
             puts "P1 please place your X via index number"
             player_x_move = gets.to_i
-            @board[player_x_move] = "x"
-            win_condition = check_win_condition
+            board.add_move(player_x_move, "x")
+            win_condition = board.check_win_condition
             
             puts "P2 please place your O via index number"
             player_o_move = gets.to_i
-            @board[player_o_move] = "o"
-            win_condition = check_win_condition
+            board.add_move(player_o_move, "o")
+            win_condition = board.check_win_condition
         end
 
         if win_condition == true
             puts "END GAME!"
-            p @board
+            p board.board
         end
     end
 end
